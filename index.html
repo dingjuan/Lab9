@@ -85,10 +85,10 @@
 
           } else if (label.match('Dir')) {
              console.log("Console Log Demo: Console Dir button tapped")
-             console.dir();
+             console.dir(calculateBtn);
           } else if (label.match('dirxml')) {
             console.log("Console Log Demo: Console Dirxml button tapped")
-            console.dirxml();
+            console.dirxml(calculateBtn);
           } else if (label.match('Table')) {
             console.log("Console Log Demo: Console Tabel button tapped")
             console.table(errorBtns);
@@ -99,15 +99,16 @@
             console.log("Console Log Demo: Console Group End button tapped")
             console.groupEnd();
           } else if (label.match('Start Timer')) {
-            console.time("Console Log Demo: Console Timer button tapped")
+            console.log("Console Log Demo: Console Start Timer button tapped")
+            console.time()
           } else if (label.match('End Timer')) {
-            console.timeEnd("Console Log Demo: Console End Timer button tapped")
+            console.log("Console Log Demo: Console Ener Timer button tapped")
+            console.timeEnd()
           } else if (label.match('Trace')) {
             console.log("Console Log Demo: Console Trace button tapped")
             console.trace();
           } else {
             
-
           }
       })
    }
