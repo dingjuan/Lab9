@@ -71,6 +71,13 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
+      console.log(firstNum);
+      if(firstNum == ""){
+        throw new NaNError("First operand is NaN");
+      }
+      if(secondNum == ""){
+        throw new NaNError("Second operand is NaN");
+      }
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
 
@@ -82,23 +89,26 @@
           TrackJS.track('Testing TrackJS!');
 
           if (label.match('Log')) {
-             console.log("Console Log Demo: Console Cog button tapped");
+             console.log("Console Log Demo: Console Log button tapped");
           } else if (label.match('Error')) {
              console.error("Console Log Demo: Console Error button tapped");
 
             try {
-                aintGonnaWork();
+                var failVariable = null;
+                failVariable.entry = "my fail";
             }
             catch(err) {
               console.error(err);
             } 
+
+              console.log("Finally we've done it!");
 
           } else if (label.match('Dir')) {
              console.log("Console Log Demo: Console Dir button tapped")
              console.dir(calculateBtn);
           } else if (label.match('dirxml')) {
             console.log("Console Log Demo: Console Dirxml button tapped")
-            console.dirxml(calculateBtn);
+            console.dirxml(document.getElementsByTagName("body"));
           } else if (label.match('Table')) {
             console.log("Console Log Demo: Console Tabel button tapped")
             console.table(errorBtns);
@@ -142,6 +152,14 @@
             this.date = new Date()
         }
     }
+
+    class NaNError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "NaNError";
+      }
+    }
+
 
 
   </script>
