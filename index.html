@@ -68,6 +68,71 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+    for (var i = 0; i < errorBtns.length; i++) {
+      let label = errorBtns[i].innerHTML;
+      errorBtns[i].addEventListener('click', function () {
+          if (label.match('Log')) {
+             console.log("Console Log Demo: Console Cog button tapped");
+          } else if (label.match('Error')) {
+             console.error("Console Log Demo: Console Error button tapped");
+
+            try {
+                aintGonnaWork();
+            }
+            catch(err) {
+              console.error(err);
+            } 
+
+          } else if (label.match('Dir')) {
+             console.log("Console Log Demo: Console Dir button tapped")
+             console.dir();
+          } else if (label.match('dirxml')) {
+            console.log("Console Log Demo: Console Dirxml button tapped")
+            console.dirxml();
+          } else if (label.match('Table')) {
+            console.log("Console Log Demo: Console Tabel button tapped")
+            console.table(errorBtns);
+          } else if (label.match('Group Start')) {
+            console.log("Console Log Demo: Console Group button tapped")
+            console.group();
+          } else if (label.match('Group End')) {
+            console.log("Console Log Demo: Console Group End button tapped")
+            console.groupEnd();
+          } else if (label.match('Start Timer')) {
+            console.time("Console Log Demo: Console Timer button tapped")
+          } else if (label.match('End Timer')) {
+            console.timeEnd("Console Log Demo: Console End Timer button tapped")
+          } else if (label.match('Trace')) {
+            console.log("Console Log Demo: Console Trace button tapped")
+            console.trace();
+          } else {
+            
+
+          }
+      })
+   }
+
+    class CustomError extends Error {
+          constructor(msg = '', ...params) {
+            super(...params)
+
+    // Maintains proper stack trace for where our error was thrown (only available on V8)
+            if (Error.captureStackTrace) {
+                Error.captureStackTrace(this, CustomError)
+            }
+            this.name = 'MyCustomError'
+            this.msg = 'This is an Custom Error'
+            this.date = new Date()
+        }
+    }
+
+    try {
+        throw new CustomError('Custom error', 'Message')
+     } catch(e) {
+         console.error(e.name)    //CustomError
+         console.error(e.msg)     //
+    }
+
   </script>
 </body>
 </html>
