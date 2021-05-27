@@ -56,6 +56,14 @@
     <button>Trigger a Global Error</button>
   </section>
 
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "5b237363f4c64d9f9fe3f2f4c3cf1cf5"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
   <script>
     let calculateBtn = document.querySelector('#calculate');
     calculateBtn.addEventListener('click', () => {
@@ -71,6 +79,8 @@
     for (var i = 0; i < errorBtns.length; i++) {
       let label = errorBtns[i].innerHTML;
       errorBtns[i].addEventListener('click', function () {
+          TrackJS.track('Testing TrackJS!');
+
           if (label.match('Log')) {
              console.log("Console Log Demo: Console Cog button tapped");
           } else if (label.match('Error')) {
@@ -108,7 +118,13 @@
             console.log("Console Log Demo: Console Trace button tapped")
             console.trace();
           } else {
-            
+
+          try {
+              throw new CustomError('Custom error', 'Message')
+           } catch(e) {
+               console.error(e.name)    //CustomError
+                console.error(e.msg)     //
+           }
           }
       })
    }
@@ -127,12 +143,6 @@
         }
     }
 
-    try {
-        throw new CustomError('Custom error', 'Message')
-     } catch(e) {
-         console.error(e.name)    //CustomError
-         console.error(e.msg)     //
-    }
 
   </script>
 </body>
